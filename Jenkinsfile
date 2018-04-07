@@ -1,15 +1,12 @@
 node {
   checkout scm
-
   stage('Create Docker Image') {
-    dir('/home/admin/docker') {
-      docker.build("docker-jenkins-pipeline:${env.BUILD_NUMBER}")
-    }
+      docker.build("docker-jenkins-pipeline")
   }
 
   stage ('Run Application') {
     try {
-      sh "docker run -d -p 80:80 -p 443:443 docker-jenkins-pipeline:${env.BUILD_NUMBER}"
+      sh "docker run -d -p 80:80 -p 443:443 docker-jenkins-pipeline"
 
     } catch (error) {
     } finally {
@@ -22,7 +19,7 @@ node {
   stage('Run Tests') {
     try {
       dir('/home/admin/docker') {
-        docker.build("docker-jenkins-pipeline:${env.BUILD_NUMBER}").push()
+        docker.build("docker-jenkins-pipeline").push()
       }
     } catch (error) {
 
