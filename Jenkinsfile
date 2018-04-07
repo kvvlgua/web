@@ -2,7 +2,7 @@ node {
   checkout scm
 
   stage('Create Docker Image') {
-    dir('/home/user/docker') {
+    dir('/home/admin/docker') {
       docker.build("docker-jenkins-pipeline:${env.BUILD_NUMBER}")
     }
   }
@@ -21,7 +21,7 @@ node {
 
   stage('Run Tests') {
     try {
-      dir('/home/user/docker') {
+      dir('/home/admin/docker') {
         docker.build("docker-jenkins-pipeline:${env.BUILD_NUMBER}").push()
       }
     } catch (error) {
