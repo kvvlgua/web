@@ -4,7 +4,7 @@ node {
   stage('Create Docker Image') {
           
           sh "cd /home/admin/docker/web"
-          sh "git pull web master"
+          sh "sudo git pull web master"
     docker.build("docker-jenkins-pipeline:${env.BUILD_NUMBER}", "/home/admin/docker/web")
   }
 
