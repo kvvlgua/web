@@ -11,9 +11,9 @@ RUN apt-get update \
 RUN ln -sf /dev/stdout /var/log/nginx/access.log \
     && ln -sf /dev/stderr /var/log/nginx/error.log
 
-COPY web/nginx.conf /etc/nginx/nginx.conf
-COPY web/default.conf /etc/nginx/sites-enabled/default
-COPY web/index.html /var/www/html/index.html
+COPY nginx.conf /etc/nginx/nginx.conf
+COPY default.conf /etc/nginx/sites-enabled/default
+COPY index.html /var/www/html/index.html
 
 EXPOSE 80 443
 CMD ["nginx", "-g", "daemon off;"]
