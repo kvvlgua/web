@@ -2,7 +2,7 @@ node {
   checkout scm
 
   stage('Create Docker Image') {
-    docker.build("docker-jenkins-pipeline:${env.BUILD_NUMBER}", "/home/admin/docker")
+    docker.build("docker-jenkins-pipeline:${env.BUILD_NUMBER}", "/home/admin/docker/web")
   }
 
   stage ('Run Application') {
@@ -17,7 +17,7 @@ node {
 
   stage('Run Tests') {
     try {
-       docker.build("docker-jenkins-pipeline:${env.BUILD_NUMBER}", "/home/admin/docker").push()
+       docker.build("docker-jenkins-pipeline:${env.BUILD_NUMBER}", "/home/admin/docker/web").push()
     } catch (error) {
 
     } finally {
