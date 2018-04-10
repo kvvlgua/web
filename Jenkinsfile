@@ -2,9 +2,7 @@ node {
   checkout scm
 
   stage('Create Docker Image') {
-          
-          sh "cd /home/admin/docker/web"
-          sh "sudo git pull web master"
+    checkout scm
     docker.build("docker-jenkins-pipeline:${env.BUILD_NUMBER}", "/home/admin/docker/web")
   }
 
