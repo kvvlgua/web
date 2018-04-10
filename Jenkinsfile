@@ -1,6 +1,8 @@
 node {
-  checkout scm
-
+  deleteDir()
+  stage('Clear') {
+   deleteDir() 
+  }
   stage('Create Docker Image') {
     checkout scm
     docker.build("docker-jenkins-pipeline:${env.BUILD_NUMBER}", "/home/admin/docker/web")
