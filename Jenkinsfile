@@ -7,7 +7,8 @@ node {
     checkout scm
     sh "git remote add web https://github.com/kvvlgua/web.git"
     sh "git pull web master"
-    sh "docker build -f Dockerfile -t web ./"
+    sh "docker rm -f web"
+    sh "docker build --name web -f Dockerfile -t web ./"
   }
 
   stage ('Run Application') {
