@@ -5,7 +5,7 @@ node {
   }
   stage('Create Docker Image') {
     checkout scm
-    docker.build("docker-jenkins-pipeline:${env.BUILD_NUMBER}", "/home/admin/docker/web")
+    docker.build("docker-jenkins-pipeline:${env.BUILD_NUMBER}", "")
   }
 
   stage ('Run Application') {
