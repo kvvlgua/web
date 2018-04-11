@@ -7,10 +7,12 @@ node {
     checkout scm
     sh "git remote add web https://github.com/kvvlgua/web.git"
     sh "git pull web master"
-    sh "docker stop web"
-    sh "docker rm web"
-    sh "docker image rm -f web"
-    sh "docker build -f Dockerfile -t web ./"
+    sh "service docker stop"
+    sh "service docker start"
+    sh('''#!/bin/bash
+    docker rm $(docker ps -aq)
+    ''')
+    sh "docker build -f Dockerfile -t web:${env.BUILD_NUMBER} ./"
   }
 
   stage ('Run Application') {
