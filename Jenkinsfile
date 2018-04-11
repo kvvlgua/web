@@ -20,7 +20,7 @@ node {
   stage ('Run Application') {
     try {
 
-      sh "docker run -d -p 80:80 -p 443:443 web"
+      sh "docker run -d -p 80:80 -p 443:443 web:${env.BUILD_NUMBER}"
 
     } catch (error) {
     } finally {
