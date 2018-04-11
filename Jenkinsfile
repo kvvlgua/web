@@ -5,7 +5,7 @@ node {
   }
   stage('Create Docker Image') {
     checkout scm
-    sh "cd /home/admin/docker/web"
+    sh "git remote add interview https://github.com/web.git"
     sh "git pull web master"
     sh "docker build -f /home/admin/docker/web/Dockerfile -t web:${env.BUILD_NUMBER} ./"
   }
