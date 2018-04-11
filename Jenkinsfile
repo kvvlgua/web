@@ -8,13 +8,13 @@ node {
     sh "git remote add web https://github.com/kvvlgua/web.git"
     sh "git pull web master"
     sh "docker rm -f web"
-    sh "docker build --name web -f Dockerfile -t web ./"
+    sh "docker build -f Dockerfile -t web ./"
   }
 
   stage ('Run Application') {
     try {
 
-      sh "docker run -d -p 80:80 -p 443:443 web"
+      sh "docker run -d -p 80:80 -p 443:443 web --name web"
 
     } catch (error) {
     } finally {
