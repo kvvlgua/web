@@ -21,7 +21,7 @@ node {
 
   stage('Run Tests') {
     try {
-       docker.build("docker-jenkins-pipeline:${env.BUILD_NUMBER}", "/home/admin/docker/web").push()
+       docker.build("docker-jenkins-pipeline:${env.BUILD_NUMBER}", "").push()
     } catch (error) {
 
     } finally {
