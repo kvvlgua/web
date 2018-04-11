@@ -5,7 +5,7 @@ node {
   }
   stage('Create Docker Image') {
     checkout scm
-    docker.build("docker-jenkins-pipeline:${env.BUILD_NUMBER}", "https://github.com/kvvlgua/web/blob/master/Dockerfile)
+    docker.build("docker-jenkins-pipeline:${env.BUILD_NUMBER}", "https://github.com/kvvlgua/web/blob/master/Dockerfile")
   }
 
   stage ('Run Application') {
@@ -21,7 +21,7 @@ node {
 
   stage('Run Tests') {
     try {
-       docker.build("docker-jenkins-pipeline:${env.BUILD_NUMBER}", "https://github.com/web/blob/master/Dockerfile).push()
+       docker.build("docker-jenkins-pipeline:${env.BUILD_NUMBER}", "https://github.com/web/blob/master/Dockerfile").push()
     } catch (error) {
 
     } finally {
