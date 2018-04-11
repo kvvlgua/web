@@ -7,8 +7,8 @@ node {
     checkout scm
     sh "git remote add web https://github.com/kvvlgua/web.git"
     sh "git pull web master"
-    sh "docker stop \$(docker ps -aq)"
-    sh "docker rm \$(docker ps -aq)"
+    sh "docker stop web:${env.BUILD_NUMBER}-1"
+    sh "docker rm web:${env.BUILD_NUMBER}-1"
     sh "docker image rm -f web:${env.BUILD_NUMBER}-1"
     sh "docker build -f Dockerfile -t web:${env.BUILD_NUMBER} ./"
   }
