@@ -8,11 +8,8 @@ node {
     sh "git remote add web https://github.com/kvvlgua/web.git"
     sh "git pull web master"
     sh ('''#!/bin/bash
-    docker container stop $(docker ps -aq)
     service docker stop
     service docker start
-    
-    docker rm $(docker ps -aq)
     ''')
     sh "docker build -f Dockerfile -t web:${env.BUILD_NUMBER} ./"
   }
