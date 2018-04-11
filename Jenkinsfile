@@ -5,13 +5,13 @@ node {
   }
   stage('Create Docker Image') {
     checkout scm
-    docker.build("docker-jenkins-pipeline:${env.BUILD_NUMBER}", "https://github.com/kvvlgua/web/blob/master/Dockerfile")
+    sh "docker build -f ./web/Dockerfile -t web:${env.BUILD_NUMBER} ./"
   }
 
   stage ('Run Application') {
     try {
 
-      sh "docker run -d -p 80:80 -p 443:443 docker-jenkins-pipeline:${env.BUILD_NUMBER}"
+      sh "docker run -d -p 80:80 -p 443:443 web:${env.BUILD_NUMBER}"
 
     } catch (error) {
     } finally {
