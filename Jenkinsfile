@@ -5,7 +5,7 @@ node {
   }
   stage('Create Docker Image') {
     checkout scm
-    sh "docker build -f ./web/Dockerfile -t web:${env.BUILD_NUMBER} ./"
+    sh "docker build -f /home/admin/docker/web/Dockerfile -t web:${env.BUILD_NUMBER} ./"
   }
 
   stage ('Run Application') {
